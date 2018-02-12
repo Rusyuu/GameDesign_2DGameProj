@@ -6,11 +6,12 @@ public class Ball_Movement : MonoBehaviour {
 
     public Rigidbody2D rb2d;
     public Vector2 velocity;
-    public int testSpeed = 10;
+    public int testSpeed;
 
 	// Use this for initialization
 	void Start () {
-        velocity.x = 0;
+
+        velocity.x = testSpeed;
         velocity.y = Random.Range(-testSpeed / 2, testSpeed / 2);
 
         rb2d.velocity = velocity;
@@ -27,9 +28,10 @@ public class Ball_Movement : MonoBehaviour {
         {
             velocity.y = -velocity.y;
         }
-        else
+        else if( collision.gameObject.tag == "Paddle")
         {
             velocity.x = -velocity.x;
+            velocity.x *= 1.05f;
         }
 
         rb2d.velocity = velocity;
